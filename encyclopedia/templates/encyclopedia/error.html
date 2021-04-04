@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+    
+        <div>
+            <h1>Error</h1>
+            <p>The requested page was not found.</p>
+
+            <p>Hey! You can add that page to our wiki!! Just click <a href="{% url 'create' %}">here.</a> </p>
+        </div>   
+{% endblock %}

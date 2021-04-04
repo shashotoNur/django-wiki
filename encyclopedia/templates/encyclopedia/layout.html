@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+        {% block style %}
+        {% endblock %}
+    </head>
+    <body>
+        
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h1 class="display-4">Wiki</h1>
+
+                <form action="{% url 'search' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia" required>
+                <p></p>
+                    <button type="submit" class="btn btn-outline-success">Search</button>
+                </form>
+                <hr>
+                <div>
+                    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-secondary">Home</button></a>
+                </div>
+                <br>
+                <div>
+                    <a href="{% url 'create' %}"><button type="button" class="btn btn-outline-secondary">Create New Page</button></a>
+                </div>
+                <br>
+                <div>
+                  <a href="{% url 'randompage' %}"><button type="button" class="btn btn-outline-secondary">Random Page</button></a>
+                </div>
+                
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </body>
+</html>
